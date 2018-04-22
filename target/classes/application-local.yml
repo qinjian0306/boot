@@ -1,0 +1,98 @@
+server:
+  port: 8081
+
+# 自定义
+db.username: admin
+db.password: password
+db.url: jdbc:mysql:///coin
+db.driverClassName: com.mysql.jdbc.Driver
+
+db2.username: admin2
+db2.password: password2
+db2.url: jdbc:mysql:///coin2
+db2.driverClassName: com.mysql.jdbc.Driver2
+
+# 自定义
+username: qj
+age: 18
+password: admin
+
+
+# redis配置
+redis:
+  host: localhost
+  port: 6379
+  timeout: 5000
+  pool:
+    minIdle: 10
+    maxIdle: 10
+    maxTotal: 100
+    maxWaitMillis: 5000
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+
+# kafka配置
+spring:
+  kafka:
+    bootstrap-servers: 192.168.123.30:9092
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: foo
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+# thymeleaf模板引擎
+  thymeleaf:
+    prefix: classpath:/templates
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+
+# DB
+  datasource:
+    name: user
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: guoguo311
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 1
+    minIdle: 1
+    maxActive: 1
+    defaultAutoCommit: false
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+
+# 文件上传
+  http:
+      multipart:
+          enabled: true
+          max-file-size: 1MB
+          max-request-size: 10MB
+
+
+filepath: /Users/qinjian/Desktop/img/
+
+
+# mybatis
+mybatis:
+  check-config-location: true
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mybatis/*Mapper.xml
+  type-aliases-package: com.qj.springboot.bean

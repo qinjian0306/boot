@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>thymeleaf</title>
+</head>
+<body>
+    <h1 style="color: red">websocket测试</h1>
+    <div id="main">
+        <div id="message"></div>
+        <button onclick="wsclose()">关闭连接</button>
+        <button onclick="wssendMsg()">发送消息</button>
+    </div>
+</body>
+
+<script th:src="@{bootstrap/js/boostrap.min.js}" type="text/javascript">
+    var socket;
+    if (typeof (WebSocket) == "undefined") {
+        alert("This explorer don't support WebSocket")
+    }
+
+    //Connect WebSocket server
+    socket = new WebSocket("ws://127.0.0.1:8081/webSocket/333333");
+    //open
+    socket.onopen = function () {
+        // socket.send("This is a client open message ");
+    }
+    //Get message
+    socket.onmessage = function (msg) {
+        setMessageInnerHTML(msg.data);
+    }
+    //close
+    // socket.onclose = function () {
+    //     alert("WebSocket is closed");
+    // }
+    //error
+    socket.onerror = function (e) {
+        alert("Error is " + e);
+    }
+
+    // 页面关闭 关闭连接
+    window.onbeforeunload = function () {
+        websocket.close();
+    }
+
+    function wsclose() {
+      socket.close();
+    }
+
+    function wssendMsg() {
+        socket.send("This is a client message ");
+    }
+
+    //将消息显示在网页上，如果不需要显示在网页上，则不调用该方法
+    function setMessageInnerHTML(innerHTML) {
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+
+</script>
+
+
+</html>

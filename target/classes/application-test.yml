@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+
+# 自定义
+db.username: admin
+db.password: password
+db.url: jdbc:mysql:///coin
+db.driverClassName: com.mysql.jdbc.Driver
+
+db2.username: admin2
+db2.password: password2
+db2.url: jdbc:mysql:///coin2
+db2.driverClassName: com.mysql.jdbc.Driver2
+
+# 自定义
+username: qj
+age: 18
+password: admin
+
+
+#kafka配置
+spring:
+  kafka:
+    bootstrap-servers: 192.168.123.30:9092
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: foo
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+#thymeleaf模板引擎
+  thymeleaf:
+    prefix: classpath:/templates
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false

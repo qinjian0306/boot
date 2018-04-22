@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 接受kafka回传 实体
+ * order
  */
 @Data
 @ToString

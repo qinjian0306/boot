@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * kafka 撮合交易实体
+ * trade
  */
 @Data
 @ToString

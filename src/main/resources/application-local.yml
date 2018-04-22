@@ -35,20 +35,17 @@ redis:
 # kafka配置
 spring:
   kafka:
-    bootstrap-servers: 192.168.123.30:9092
-    producer:
-      retries: 0
-      batch-size: 16384
-      buffer-memory: 33554432
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-    consumer:
-      group-id: foo
-      auto-offset-reset: earliest
-      enable-auto-commit: true
-      auto-commit-interval: 100
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      bootstrapServer: 192.168.123.127:9092,192.168.123.127:9093
+      groupId: btse-order01
+      topic:
+          orderTopic: order-a01
+          tradeTopic: trade-a01
+          priceBookTopic-BTSE: pricebook-a01
+          marketPriceTopic: marketprice-a01
+          btu: mpt-btu-a01
+          eth: mpt-etu-a01
+          bcu: mpt-bcu-a01
+          ltu: mpt-ltu-a01
 
 # thymeleaf模板引擎
   thymeleaf:

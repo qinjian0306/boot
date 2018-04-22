@@ -1,7 +1,6 @@
 package com.qj.springboot.controller;
 
 import com.qj.springboot.bean.Order;
-import com.qj.springboot.kafka.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

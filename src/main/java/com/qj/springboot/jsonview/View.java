@@ -16,10 +16,13 @@
 
 package com.qj.springboot.jsonview;
 
+/**
+ * 系统视图
+ */
 public class View {
 
-	public static class Common {}
-	public static class Ext extends Common {}
-	public static class Deal extends Ext {}
+	public interface Public {}
+	public interface Ext extends Public {}
+	public interface Deal extends Ext,Public {}
 
 }

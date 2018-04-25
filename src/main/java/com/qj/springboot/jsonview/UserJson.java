@@ -22,18 +22,26 @@ import lombok.Data;
 @Data
 public class UserJson {
 
-	@JsonView(View.Common.class)
+	@JsonView(View.Public.class)
 	private Long id;
 
-	@JsonView(View.Ext.class)
+	@JsonView(Name.class)
 	private String firstname;
 
-	@JsonView(View.Deal.class)
+	@JsonView(Name.class)
 	private String lastname;
 
 	private String email;
+	@JsonView(Address.class)
 	private String address;
 	private String postalCode;
 	private String city;
 	private String country;
+
+	/**
+	 * 视图
+	 */
+	public interface Name extends View.Public{}
+	public interface Address extends View.Public{}
+	public interface User extends Name,Address{}
 }

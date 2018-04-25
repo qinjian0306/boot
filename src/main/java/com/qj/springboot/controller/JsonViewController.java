@@ -1,5 +1,6 @@
 package com.qj.springboot.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.qj.springboot.bean.UserTest;
 import com.qj.springboot.jsonview.View;
@@ -17,17 +18,17 @@ public class JsonViewController {
     @Autowired
     private UserTestService userTestService;
 
-    @JsonView(View.Deal.class)
+//    private UserTest.Password user;
+
+    @JsonView(UserTest.User.class)
     @RequestMapping("/jsonView")
-    public Object jsonView(){
+    public JSONObject jsonView(){
+        JSONObject jsonObject = new JSONObject();
         List<UserTest> list = userTestService.getUserList();
-        return list;
-    }
-
-
-    @RequestMapping("/jsonToPojo")
-    public String jsonView(@RequestBody UserTest userTest){
-        return userTest.toString();
+//        user = (UserTest.Password)(list.get(0));
+        jsonObject.put("userList",list.get(0));
+//        jsonObject.put("user",user);
+        return jsonObject;
     }
 
 }

@@ -10,13 +10,29 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
+
+/**
+ * @Named == @Component
+ * @Inject == @Autowired == @Resource
+ *
+ * @Named:
+ *       替代@Component来声明一个Bean
+ * @Inject:
+ *      这是jsr330中的规范，通过‘AutowiredAnnotationBeanPostProcessor’ 类实现的依赖注入
+ *
+ *
+ */
+//@Component
+@Named
 public class KafkaConfig {
 
-    @Autowired
+//    @Autowired
+    @Inject
     private KafkaProperties properties;
 
     @Bean

@@ -10,10 +10,14 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 /**
  * send and receive
  */
-@Component
+
+@Named
 public class KafkaInstant {
 
     /**
@@ -21,13 +25,13 @@ public class KafkaInstant {
      */
     private static final Logger logger = LoggerFactory.getLogger(KafkaInstant.class);
 
-    @Autowired
+    @Inject
     private KafkaTemplate<String, String> stringKafkaTemplate;
-    @Autowired
+    @Inject
     private KafkaTemplate<String, Object> objectKafkaTemplate;
-    @Autowired
+    @Inject
     private KafkaTemplate<String, KafkaOrder> orderKafkaTemplate;
-    @Autowired
+    @Inject
     private KafkaTemplate<String, KafkaTrade> tradeKafkaTemplate;
 
     // producer
@@ -35,12 +39,12 @@ public class KafkaInstant {
     private String orderTopic;
 
     public void sendOrder(KafkaOrder order) {
-        orderKafkaTemplate.send(orderTopic,order);
+        orderKafkaTemplate.send(orderTopic, order);
         System.out.println("produce order : " + order.toString());
     }
 
     // consumer
-    @KafkaListener(topics={"${spring.kafka.topic.orderTopic}"},containerFactory = "kafkaTradeListenerContainerFactory")
+    @KafkaListener(topics = {"${spring.kafka.topic.orderTopic}"}, containerFactory = "kafkaTradeListenerContainerFactory")
     public void processTrades(KafkaOrder order) throws Exception {
 
         System.out.println("consume trade : " + order.toString());

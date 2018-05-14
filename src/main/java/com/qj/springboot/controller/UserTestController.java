@@ -8,16 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
 @RestController
 public class UserTestController {
 
-    @Autowired
+    @Inject
+    @Named("userTestServiceImpl")
     private UserTestService userTestService;
 
-//    @JsonView(View.Common.class)
-//    @JsonView(View.Ext.class)
+//    @Inject
+//    @Named("userTestService2Impl")
+//    private UserTestService userTestService;
+
     @JsonView(View.Deal.class)
     @RequestMapping("/userTest")
     public Object getUser(){
@@ -27,7 +32,7 @@ public class UserTestController {
 
     @RequestMapping("/userById")
     public Object getUserById(){
-        UserTest userTest =  userTestService.getUserById(2);
+        UserTest userTest =  userTestService.getUserById(1);
         return userTest;
     }
 }

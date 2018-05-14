@@ -13,7 +13,7 @@ public class UserTest implements Serializable {
 
     @JsonView(View.Public.class)
     private Long id;
-    @JsonView(Username.class)
+    @JsonView({Username.class,Password.class})
     private String username;
     @JsonView(Password.class)
     private String password;

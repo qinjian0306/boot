@@ -13,14 +13,19 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 
 /**
  * kafka template
  */
-@Component
+//@Component
+@Named
 public class KafkaTemplates {
 
-    @Autowired
+//    @Autowired
+    @Inject
     private KafkaConfig config;
 
     /**

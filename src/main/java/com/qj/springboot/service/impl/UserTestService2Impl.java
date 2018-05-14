@@ -5,13 +5,13 @@ import com.qj.springboot.mapper.UserTestMapper;
 import com.qj.springboot.service.UserTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Named;
+import java.util.Date;
 import java.util.List;
 
-@Named("userTestServiceImpl")
-public class UserTestServiceImpl implements UserTestService {
+@Named("userTestService2Impl")
+public class UserTestService2Impl implements UserTestService {
 
     @Autowired
     private UserTestMapper userTestMapper;
@@ -24,7 +24,7 @@ public class UserTestServiceImpl implements UserTestService {
 
     @Override
     public UserTest getUserById(Integer id) {
-        UserTest userTest =  userTestMapper.getUserById(id);
+        UserTest userTest =  userTestMapper.getUserById(2);
         return userTest;
     }
 

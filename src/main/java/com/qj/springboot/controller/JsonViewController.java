@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
 @RestController
 public class JsonViewController {
 
-    @Autowired
+
+    @Inject
+    @Named("userTestServiceImpl")
     private UserTestService userTestService;
 
 //    private UserTest.Password user;

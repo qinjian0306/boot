@@ -12,7 +12,9 @@ public class KafkaProperties {
 
     private String bootstrapServer;
 
-    private String groupId;
+    private String queueGroupId;
+
+    private String topicGroupId;
 
     public String getBootstrapServer() {
         return bootstrapServer;
@@ -22,12 +24,20 @@ public class KafkaProperties {
         this.bootstrapServer = bootstrapServer;
     }
 
-    public String getGroupId() {
-        return groupId;
+    public String getQueueGroupId() {
+        return queueGroupId;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    public void setQueueGroupId(String queueGroupId) {
+        this.queueGroupId = queueGroupId;
+    }
+
+    public String getTopicGroupId() {
+        return topicGroupId;
+    }
+
+    public void setTopicGroupId(String topicGroupId) {
+        this.topicGroupId = topicGroupId;
     }
 
     private final Topics topics = new Topics();

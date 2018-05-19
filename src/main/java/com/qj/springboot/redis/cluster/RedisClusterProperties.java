@@ -1,34 +1,28 @@
-package com.qj.springboot.redis;
+package com.qj.springboot.redis.cluster;
 
+import com.alibaba.fastjson.JSON;
+import com.qj.springboot.redis.single.RedisProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
  * 第一步: 读取配置文件中redis参数 创建对象
  */
-@ConfigurationProperties(prefix = "redis")
-public class RedisProperties {
+@Component
+@ConfigurationProperties(prefix = "redis.cluster")
+public class RedisClusterProperties {
 
-    private String host;
-    private int port;
+    private String nodes;
     private int timeout;
-    private String password;
-    private final Pool pool = new Pool();
+    private int expire;
+    private final ClusterPool clusterPool = new ClusterPool();
 
-    public String getHost() {
-        return host;
+    public String getNodes() {
+        return nodes;
     }
 
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
+    public void setNodes(String nodes) {
+        this.nodes = nodes;
     }
 
     public int getTimeout() {
@@ -39,26 +33,25 @@ public class RedisProperties {
         this.timeout = timeout;
     }
 
-    public String getPassword() {
-        return password;
+    public int getExpire() {
+        return expire;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setExpire(int expire) {
+        this.expire = expire;
     }
 
-    public Pool getPool() {
-        return pool;
+    public ClusterPool getClusterPool() {
+        return clusterPool;
     }
 
-    public static class Pool {
+    public static class ClusterPool {
         public int maxTotal;
         public int maxIdle;
         public int minIdle;
         public long maxWaitMillis;
         public boolean testWhileIdle;
         public boolean testOnBorrow;
-        public boolean testOnReturn;
 
         public int getMaxTotal() {
             return maxTotal;
@@ -115,16 +108,13 @@ public class RedisProperties {
         public void setTestOnReturn(boolean testOnReturn) {
             this.testOnReturn = testOnReturn;
         }
+
+        public boolean testOnReturn;
+
     }
 
     @Override
     public String toString() {
-        return "RedisProperties{" +
-                "host='" + host + '\'' +
-                ", port=" + port +
-                ", timeout=" + timeout +
-                ", password='" + password + '\'' +
-                ", pool=" + pool +
-                '}';
+        return JSON.toJSONString(this);
     }
 }

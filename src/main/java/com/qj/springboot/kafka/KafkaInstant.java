@@ -37,17 +37,34 @@ public class KafkaInstant {
     // producer
     @Value("${spring.kafka.topic.orderTopic}")
     private String orderTopic;
+    @Value("${spring.kafka.topic.tradeTopic}")
+    private String tradeTopic;
 
     public void sendOrder(KafkaOrder order) {
         orderKafkaTemplate.send(orderTopic, order);
         System.out.println("produce order : " + order.toString());
     }
 
-    // consumer
-    @KafkaListener(topics = {"${spring.kafka.topic.orderTopic}"}, containerFactory = "kafkaTradeListenerContainerFactory")
-    public void processTrades(KafkaOrder order) throws Exception {
+    public void sendTrade(KafkaTrade trade) {
+        tradeKafkaTemplate.send(tradeTopic, trade);
+        System.out.println("produce order : " + trade.toString());
+    }
 
-        System.out.println("consume trade : " + order.toString());
+
+    // consumer1 queue
+    @KafkaListener(topics = {"${spring.kafka.topic.orderTopic}"}, containerFactory = "kafkaOrderListenerContainerFactory")
+    public void processTrades1(KafkaOrder order) throws Exception {
+
+        System.out.println("queue ip1111 consume1 trade : " + order.toString());
 
     }
+
+    // consumer2 topic
+    @KafkaListener(topics = {"${spring.kafka.topic.tradeTopic}"}, containerFactory = "kafkaTradeListenerContainerFactory")
+    public void processTrades2(KafkaTrade trade) throws Exception {
+
+        System.out.println("topic ip1111 consume2 trade : " + trade.toString());
+
+    }
+
 }

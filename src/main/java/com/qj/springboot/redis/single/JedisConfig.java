@@ -1,4 +1,4 @@
-package com.qj.springboot.redis;
+package com.qj.springboot.redis.single;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

@@ -18,25 +18,41 @@ age: 18
 password: admin
 
 
-# redis配置
+# redis配置  单机版
 redis:
-  host: localhost
-  port: 6379
-  timeout: 5000
-  pool:
-    minIdle: 10
-    maxIdle: 10
-    maxTotal: 100
-    maxWaitMillis: 5000
-    testWhileIdle: true
-    testOnBorrow: true
-    testOnReturn: true
+  single:
+    host: localhost
+    port: 6379
+    timeout: 5000
+    pool:
+      minIdle: 10
+      maxIdle: 10
+      maxTotal: 100
+      maxWaitMillis: 5000
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: true
+
+  cluster:
+    nodes: 192.168.123.83:6381,192.168.123.83:6382,192.168.123.83:6383
+    timeout: 5000
+    expire: 120
+    clusterPool:
+      minIdle: 10
+      maxIdle: 10
+      maxTotal: 100
+      maxWaitMillis: 5000
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: true
+
 
 # kafka配置
 spring:
   kafka:
       bootstrapServer: 192.168.123.127:9092,192.168.123.127:9093
-      groupId: btse-order01
+      queueGroupId: btse-order-00
+      topicGroupId: btse-order01
       topic:
           orderTopic: order-01
           tradeTopic: trade-01
@@ -83,13 +99,14 @@ spring:
           max-file-size: 1MB
           max-request-size: 10MB
 
-
-filepath: /Users/qinjian/Desktop/img/
-
-
 # mybatis
 mybatis:
   check-config-location: true
   config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:mybatis/*Mapper.xml
   type-aliases-package: com.qj.springboot.bean
+
+
+
+filepath: /Users/qinjian/Desktop/img/
+

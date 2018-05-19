@@ -1,4 +1,4 @@
-package com.qj.springboot.redis;
+package com.qj.springboot.redis.single;
 
 import java.io.Serializable;
 

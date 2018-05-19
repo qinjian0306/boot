@@ -1,10 +1,9 @@
-package com.qj.springboot.redis;
+package com.qj.springboot.redis.single;
 
 import org.apache.commons.lang3.StringUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import javax.inject.Named;
 import java.util.Set;
 
 /**

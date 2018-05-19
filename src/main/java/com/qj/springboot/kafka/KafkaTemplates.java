@@ -24,7 +24,7 @@ import javax.inject.Named;
 @Named
 public class KafkaTemplates {
 
-//    @Autowired
+    //    @Autowired
     @Inject
     private KafkaConfig config;
 
@@ -55,11 +55,11 @@ public class KafkaTemplates {
 
     /**
      * consumer
-      * @return
+     * @return
      */
     // string type
     public ConsumerFactory<String, String> StringFactory() {
-        return new DefaultKafkaConsumerFactory<>(config.kafkaConsumerConfig(),
+        return new DefaultKafkaConsumerFactory<>(config.kafkaConsumerQueueConfig(),
                 new StringDeserializer(),
                 new JsonDeserializer<>(String.class));
     }
@@ -71,7 +71,7 @@ public class KafkaTemplates {
     }
     // object type
     public ConsumerFactory<String, Object> objectFactory() {
-        return new DefaultKafkaConsumerFactory<>(config.kafkaConsumerConfig(),
+        return new DefaultKafkaConsumerFactory<>(config.kafkaConsumerQueueConfig(),
                 new StringDeserializer(),
                 new JsonDeserializer<>(Object.class));
     }
@@ -83,7 +83,7 @@ public class KafkaTemplates {
     }
     // order
     public ConsumerFactory<String, KafkaOrder> orderFactory() {
-        return new DefaultKafkaConsumerFactory<>(config.kafkaConsumerConfig(),
+        return new DefaultKafkaConsumerFactory<>(config.kafkaConsumerQueueConfig(),
                 new StringDeserializer(),
                 new JsonDeserializer<>(KafkaOrder.class));
     }
@@ -95,7 +95,7 @@ public class KafkaTemplates {
     }
     // trade
     public ConsumerFactory<String, KafkaTrade> tradeFactory() {
-        return new DefaultKafkaConsumerFactory<>(config.kafkaConsumerConfig(),
+        return new DefaultKafkaConsumerFactory<>(config.kafkaConsumerTopicConfig(),
                 new StringDeserializer(),
                 new JsonDeserializer<>(KafkaTrade.class));
     }

@@ -1,13 +1,13 @@
-package com.qj.springboot.redis;
+package com.qj.springboot.redis.cluster;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 /**
  * 第二步: 初始化JedisPoolConfig
  */
-public class JedisPoolConfig extends GenericObjectPoolConfig {
+public class JedisClusterPoolConfig extends GenericObjectPoolConfig {
 
-	public JedisPoolConfig() {
+	public JedisClusterPoolConfig() {
 
 		// 最大连接数
 		setMaxTotal(100);

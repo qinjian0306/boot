@@ -1,7 +1,6 @@
 package com.qj.springboot.redis.cluster;
 
 import com.alibaba.fastjson.JSON;
-import com.qj.springboot.redis.single.RedisProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 

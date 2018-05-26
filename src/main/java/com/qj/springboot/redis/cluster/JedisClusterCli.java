@@ -8,7 +8,9 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * 封装redis
@@ -250,5 +252,26 @@ public class JedisClusterCli {
         } catch (Exception e) {
         	return 0L;
 		}
+    }
+
+
+    /**
+     * 获取一类key keys
+     */
+    public TreeSet<String> keys(String prefix) {
+        TreeSet<String> keys = new TreeSet<>();
+        Map<String, JedisPool> clusterNodes = jedisCluster.getClusterNodes();
+        for (String k : clusterNodes.keySet()) {
+            JedisPool jedisPool = clusterNodes.get(k);
+            Jedis jedis = jedisPool.getResource();
+            try {
+                keys.addAll(jedis.keys(prefix+"*"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                jedis.close();//用完一定要close这个链接！！！
+            }
+        }
+        return keys;
     }
 }

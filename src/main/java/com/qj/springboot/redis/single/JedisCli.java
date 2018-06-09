@@ -10,8 +10,12 @@ import java.util.Set;
  * 封装redis
  */
 public class JedisCli {
-	
-	/**
+
+    public JedisPool getJedisPool() {
+        return jedisPool;
+    }
+
+    /**
      * Jedis连接池
      */
     protected JedisPool jedisPool;
@@ -22,6 +26,8 @@ public class JedisCli {
     public void setJedisPool(JedisPool jedisPool) {
         this.jedisPool = jedisPool;
     }
+
+
     
     /**
      * 新增不过期的数据

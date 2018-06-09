@@ -20,45 +20,45 @@ import java.util.Set;
 @EnableConfigurationProperties(RedisClusterProperties.class)
 public class JedisClusterConfig {
 
-    @Bean
-    public JedisClusterPoolConfig jedisClusterPoolConfig(RedisClusterProperties redisClusterProperties) {
-        JedisClusterPoolConfig jedisClusterPoolConfig = new JedisClusterPoolConfig();
-        jedisClusterPoolConfig.setMaxTotal(redisClusterProperties.getClusterPool().getMaxTotal());
-        jedisClusterPoolConfig.setMaxIdle(redisClusterProperties.getClusterPool().getMaxIdle());
-        jedisClusterPoolConfig.setMinIdle(redisClusterProperties.getClusterPool().getMinIdle());
-        jedisClusterPoolConfig.setMaxWaitMillis(redisClusterProperties.getClusterPool().getMaxWaitMillis());
-        jedisClusterPoolConfig.setTestWhileIdle(redisClusterProperties.getClusterPool().isTestWhileIdle());
-        jedisClusterPoolConfig.setTestOnBorrow(redisClusterProperties.getClusterPool().isTestOnBorrow());
-        jedisClusterPoolConfig.setTestOnReturn(redisClusterProperties.getClusterPool().isTestOnReturn());
-        return jedisClusterPoolConfig;
-    }
-
-
-    @Bean
-    public JedisCluster jedisCluster(RedisClusterProperties redisClusterProperties,JedisClusterPoolConfig jedisClusterPoolConfig) {
-        if (redisClusterProperties == null){
-            return null;
-        }
-        String [] nodeArray = redisClusterProperties.getNodes().split(",");
-        Set<HostAndPort> nodes = new HashSet<HostAndPort>();
-
-        for (String ipPort :nodeArray) {
-            String[] ipPortPair = ipPort.split(":");
-            nodes.add(new HostAndPort(ipPortPair[0].trim(),Integer.valueOf(ipPortPair[1].trim())));
-        }
-        return new JedisCluster(nodes,redisClusterProperties.getTimeout(),jedisClusterPoolConfig);
-
-    }
-
-    /**
-     * 封装的jedis对象
-     * @param jedisCluster
-     * @return
-     */
-    @Bean
-    public JedisClusterCli jedisClusterCli(JedisCluster jedisCluster) {
-        JedisClusterCli jedisClusterCli = new JedisClusterCli();
-        jedisClusterCli.setJedisCluster(jedisCluster);
-        return jedisClusterCli;
-    }
+//    @Bean
+//    public JedisClusterPoolConfig jedisClusterPoolConfig(RedisClusterProperties redisClusterProperties) {
+//        JedisClusterPoolConfig jedisClusterPoolConfig = new JedisClusterPoolConfig();
+//        jedisClusterPoolConfig.setMaxTotal(redisClusterProperties.getClusterPool().getMaxTotal());
+//        jedisClusterPoolConfig.setMaxIdle(redisClusterProperties.getClusterPool().getMaxIdle());
+//        jedisClusterPoolConfig.setMinIdle(redisClusterProperties.getClusterPool().getMinIdle());
+//        jedisClusterPoolConfig.setMaxWaitMillis(redisClusterProperties.getClusterPool().getMaxWaitMillis());
+//        jedisClusterPoolConfig.setTestWhileIdle(redisClusterProperties.getClusterPool().isTestWhileIdle());
+//        jedisClusterPoolConfig.setTestOnBorrow(redisClusterProperties.getClusterPool().isTestOnBorrow());
+//        jedisClusterPoolConfig.setTestOnReturn(redisClusterProperties.getClusterPool().isTestOnReturn());
+//        return jedisClusterPoolConfig;
+//    }
+//
+//
+//    @Bean
+//    public JedisCluster jedisCluster(RedisClusterProperties redisClusterProperties,JedisClusterPoolConfig jedisClusterPoolConfig) {
+//        if (redisClusterProperties == null){
+//            return null;
+//        }
+//        String [] nodeArray = redisClusterProperties.getNodes().split(",");
+//        Set<HostAndPort> nodes = new HashSet<HostAndPort>();
+//
+//        for (String ipPort :nodeArray) {
+//            String[] ipPortPair = ipPort.split(":");
+//            nodes.add(new HostAndPort(ipPortPair[0].trim(),Integer.valueOf(ipPortPair[1].trim())));
+//        }
+//        return new JedisCluster(nodes,redisClusterProperties.getTimeout(),jedisClusterPoolConfig);
+//
+//    }
+//
+//    /**
+//     * 封装的jedis对象
+//     * @param jedisCluster
+//     * @return
+//     */
+//    @Bean
+//    public JedisClusterCli jedisClusterCli(JedisCluster jedisCluster) {
+//        JedisClusterCli jedisClusterCli = new JedisClusterCli();
+//        jedisClusterCli.setJedisCluster(jedisCluster);
+//        return jedisClusterCli;
+//    }
 }

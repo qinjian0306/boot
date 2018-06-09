@@ -33,18 +33,18 @@ redis:
       testOnBorrow: true
       testOnReturn: true
 
-  cluster:
-    nodes: 192.168.123.83:6381,192.168.123.83:6382,192.168.123.83:6383
-    timeout: 5000
-    expire: 120
-    clusterPool:
-      minIdle: 10
-      maxIdle: 10
-      maxTotal: 100
-      maxWaitMillis: 5000
-      testWhileIdle: true
-      testOnBorrow: true
-      testOnReturn: true
+#  cluster:
+#    nodes: 192.168.123.83:6381,192.168.123.83:6382,192.168.123.83:6383
+#    timeout: 5000
+#    expire: 120
+#    clusterPool:
+#      minIdle: 10
+#      maxIdle: 10
+#      maxTotal: 100
+#      maxWaitMillis: 5000
+#      testWhileIdle: true
+#      testOnBorrow: true
+#      testOnReturn: true
 
 
 # kafka配置

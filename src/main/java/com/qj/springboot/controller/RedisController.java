@@ -30,11 +30,8 @@ public class RedisController {
     private JedisCli jedisCli;
 
     // 集群
-    @Autowired
-    private JedisClusterCli jedisClusterCli;
-
-    @Autowired
-    private JedisCluster jedisCluster;
+//    @Autowired
+//    private JedisClusterCli jedisClusterCli;
 
 
     @RequestMapping("/redis")
@@ -72,7 +69,7 @@ public class RedisController {
      * redis集群测试
      * @return
      */
-    @RequestMapping("/redisCluster2")
+    /*@RequestMapping("/redisCluster2")
     public String redisCluster2(){
 
         System.out.println(redisClusterProperties.toString());
@@ -83,7 +80,7 @@ public class RedisController {
         System.out.println(jedisClusterCli.get("hehe"));
 
         return "redisCluster2";
-    }
+    }*/
 
 
 }

@@ -98,6 +98,9 @@ spring:
           enabled: true
           max-file-size: 1MB
           max-request-size: 10MB
+# i18n
+  messages:
+    basename: static/i18n/messages
 
 # mybatis
 mybatis:
@@ -109,4 +112,7 @@ mybatis:
 
 
 filepath: /Users/qinjian/Desktop/img/
+
+
+
 
